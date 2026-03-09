@@ -15,39 +15,20 @@
 }
 ```
 
-5. Klik **"Commit changes"**
+5. Scroll ke bawah → klik tombol hijau **"Commit changes"** → klik **"Commit changes"** lagi
 
 ---
 
-**Langkah 2 — Redeploy di Vercel:**
+### **LANGKAH 2 — Fix Framework Preset di Vercel**
 
-1. Buka **vercel.com** → masuk ke dashboard project kamu
-2. Klik tab **"Deployments"**
-3. Klik tombol **"Redeploy"** pada deployment terbaru
-4. Tunggu 1-2 menit
-5. Buka link Vercel kamu lagi → seharusnya DApp sudah muncul ✅
+1. Buka **vercel.com** → login
+2. Klik project **bitlend-opnet** kamu
+3. Klik tab **"Settings"** di menu atas
+4. Di menu kiri klik **"General"**
+5. Cari tulisan **"Framework Preset"**
+6. Klik dropdown-nya → pilih **"Other"**
 
----
-
-### **Atau — Setting Manual di Vercel Dashboard**
-
-Kalau tidak mau tambah file, bisa lewat settings:
-
-1. Di Vercel dashboard → klik project kamu
-2. Klik **"Settings"** → **"General"**
-3. Cari bagian **"Framework Preset"**
-4. Ubah ke **"Other"**
-5. Cari **"Root Directory"** → pastikan kosong atau `/`
-6. Klik **"Save"** → klik **"Redeploy"**
-
----
-
-### **Struktur File yang Benar di GitHub**
-
-Pastikan repository kamu terlihat seperti ini — **tidak ada subfolder**:
+Seperti ini tampilannya:
 ```
-📁 bitlend-opnet/          ← root repository
-├── 📄 index.html          ← HARUS di sini
-├── 📄 vercel.json         ← TAMBAHKAN ini
-├── 📄 README.md
-└── 📄 package.json
+Framework Preset
+[ Other          ▼ ]   ← pilih ini
