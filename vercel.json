@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
+```
+
+5. Klik **"Commit changes"**
+
+---
+
+**Langkah 2 — Redeploy di Vercel:**
+
+1. Buka **vercel.com** → masuk ke dashboard project kamu
+2. Klik tab **"Deployments"**
+3. Klik tombol **"Redeploy"** pada deployment terbaru
+4. Tunggu 1-2 menit
+5. Buka link Vercel kamu lagi → seharusnya DApp sudah muncul ✅
+
+---
+
+### **Atau — Setting Manual di Vercel Dashboard**
+
+Kalau tidak mau tambah file, bisa lewat settings:
+
+1. Di Vercel dashboard → klik project kamu
+2. Klik **"Settings"** → **"General"**
+3. Cari bagian **"Framework Preset"**
+4. Ubah ke **"Other"**
+5. Cari **"Root Directory"** → pastikan kosong atau `/`
+6. Klik **"Save"** → klik **"Redeploy"**
+
+---
+
+### **Struktur File yang Benar di GitHub**
+
+Pastikan repository kamu terlihat seperti ini — **tidak ada subfolder**:
+```
+📁 bitlend-opnet/          ← root repository
+├── 📄 index.html          ← HARUS di sini
+├── 📄 vercel.json         ← TAMBAHKAN ini
+├── 📄 README.md
+└── 📄 package.json
