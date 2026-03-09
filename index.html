@@ -196,7 +196,9 @@
       font-weight: 800;
       background: linear-gradient(135deg, var(--text), var(--muted));
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
+      color: transparent;
     }
     .stat-sub {
       font-size: 12px;
@@ -1360,13 +1362,16 @@ const agentResponses = {
   'balance': () => walletConnected ? `💰 **Your Wallet Balance**\n\nAddress: \`${walletAddress?.slice(0,14)}...\`\n\n• **tBTC**: ${walletBalance.toFixed(4)} (≈ $${(walletBalance * 33700).toLocaleString()})\n• **USDs**: 5,000.00\n\nTo get more testnet tBTC, visit the [faucet](https://faucet.opnet.org/)` : `⚠️ Please connect your OP_NET wallet first to view your balance.`,
   'health': () => `🏥 **Health Factor Analysis**\n\nYour current health factor is **2.14** — this is considered **safe**.\n\n• Liquidation threshold: 1.0\n• Current collateral: 0.25 tBTC + 5,000 USDs\n• Current debt: 2,000 USDs\n\nYou can safely borrow up to 2,500 more USDs before entering risky territory.`,
   'strategy': () => `⚡ **Optimal tBTC Yield Strategy**\n\n**Option 1 - Simple Supply (Low Risk)**\n→ Supply tBTC at 2.84% APY\n→ Earn passive yield with no liquidation risk\n\n**Option 2 - Loop Strategy (Medium Risk)**\n→ Supply tBTC → Borrow USDs → Supply USDs\n→ Effective yield: ~3.2% net APY\n\n**Option 3 - Leverage (Higher Risk)**\n→ Supply tBTC as collateral, borrow more tBTC\n→ Up to 65% LTV — monitor health factor carefully\n\n⚠️ Always maintain health factor > 1.5`,
-  'supply': async (msg) => {
-    const match = msg.match(/(\d+\.?\d*)\s*(tbtc|usds|wbtc)/i);
+  'supply': async function(msg) {
+    var match = msg.match(/(\d+\.?\d*)\s*(tbtc|usds|wbtc)/i);
     if (match) {
-      const amt = match[1], asset = match[2].toUpperCase();
-      return `✅ **Supply Order Prepared**\n\nAsset: **${asset}**\nAmount: **${amt}**\nExpected APY: **${asset === 'tBTC' ? '2.84' : asset === 'USDs' ? '4.21' : '3.15'}%**\n\nTo execute this transaction, click the **Supply** button in the Markets tab or I can open the modal for you. ${walletConnected ? '🟢 Wallet connected' : '⚠️ Please connect wallet first'}`,
+      var amt = match[1];
+      var asset = match[2].toUpperCase();
+      var apyVal = asset === 'tBTC' ? '2.84' : asset === 'USDs' ? '4.21' : '3.15';
+      var walletStatus = walletConnected ? '🟢 Wallet connected' : '⚠️ Please connect wallet first';
+      return '✅ **Supply Order Prepared**\n\nAsset: **' + asset + '**\nAmount: **' + amt + '**\nExpected APY: **' + apyVal + '%**\n\nTo execute this transaction, click the **Supply** button in the Markets tab. ' + walletStatus;
     }
-    return `To supply assets, please specify the amount and asset. Example: "Supply 0.1 tBTC" or use the Markets tab.`;
+    return 'To supply assets, please specify the amount and asset. Example: "Supply 0.1 tBTC" or use the Markets tab.';
   },
   'default': (msg) => `I received your message: "${msg}"\n\nI'm connected to OP_NET via MCP at \`ai.opnet.org/mcp\`. I can help with:\n• Market rates and analytics\n• Position management\n• Transaction execution\n• Risk assessment\n\nWhat would you like to know?`
 };
