@@ -1,0 +1,24 @@
+{
+  "name": "bitlend-opnet",
+  "version": "1.0.0",
+  "description": "Lending Protocol DApp on OP_NET Bitcoin L1 with AI Agent via MCP",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "serve": "npx serve . -p 8080"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "opnet": "latest",
+    "@btc-vision/transaction": "latest",
+    "@btc-vision/bitcoin": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": ["bitcoin", "opnet", "defi", "lending", "mcp", "ai-agent"],
+  "license": "MIT"
+}
